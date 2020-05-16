@@ -2,7 +2,7 @@ resource "google_sql_database_instance" "database_instance" {
   #  provider = google-beta
 
   name             = "vpn-db-instance"
-  region           = "europe-west3"
+  region           = "us-central1"
   database_version = "POSTGRES_11"
 
   settings {
@@ -20,13 +20,13 @@ resource "google_sql_database_instance" "database_instance" {
 
 resource "local_file" "db_ip" {
   content  = google_sql_database_instance.database_instance.private_ip_address
-  filename = "ip.txt"
+  filename = "db_ip.txt"
 }
 
 resource "google_sql_user" "user" {
   name     = "postgres"
   instance = google_sql_database_instance.database_instance.name
-  password = "postgres"
+  password = "123456"
 }
 
 resource "google_sql_database" "databases" {

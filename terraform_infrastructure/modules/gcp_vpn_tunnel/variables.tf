@@ -1,7 +1,7 @@
 variable "azure_public_ip" {}
 
 variable "network_selflink" {
-  default = "https://www.googleapis.com/compute/v1/projects/demo2ansible/global/networks/default"
+  default = "https://www.googleapis.com/compute/v1/projects/fourthdemo-274718/global/networks/default"
 }
 
 variable "shared_secret_key" {
@@ -13,7 +13,7 @@ variable "az_traffic_selector" {
 }
 
 variable "gcp_traffic_selector" {
-  default = ["10.156.0.0/20", "172.23.48.0/24"]
+  default = ["10.128.0.0/20", "172.22.208.0/24"]
 }
 
 variable "dest_range" {

@@ -1,5 +1,5 @@
 resource "azurerm_subnet" "frontend" {
-  name                 = "fronend"
+  name                 = "frontend"
   resource_group_name  = var.group_name
   virtual_network_name = var.virtual_network_name
   address_prefix       = "172.16.1.0/24"

@@ -23,13 +23,13 @@ resource "azurerm_linux_virtual_machine" "vm" {
   resource_group_name   = var.group_name
   location              = var.group_location
   size                  = "Standart_D4s_v3"
-  admin_username        = "ihor"
-  admin_password        = "Owl123456789"
+  admin_username        = "teamcity"
+  #admin_password        = "Owl123456789"
   network_interface_ids = [azurerm_network_interface.net_inter.id]
 
   admin_ssh_key {
-    username   = "ihor"
-    public_key = file("~/.ssh/id_rsa.pub")
+    username   = "teamcity"
+    public_key = file("/root/.ssh/.tc/id_rsa.pub")
   }
 
   os_disk {
@@ -47,8 +47,8 @@ resource "azurerm_linux_virtual_machine" "vm" {
   connection {
     host        = azurerm_public_ip.vm_public_ip.ip_address
     type        = "ssh"
-    user        = "ihor"
-    private_key = file("~/.ssh/id_rsa")
+    user        = "teamcity"
+    private_key = file("/root/.ssh/.tc/id_rsa")
   }
 
   provisioner "remote-exec" {
@@ -68,5 +68,5 @@ resource "azurerm_linux_virtual_machine" "vm" {
 
 resource "local_file" "vm_ip" {
   content  = azurerm_linux_virtual_machine.vm.private_ip_address
-  filename = "vm_private_ip.txt"
+  filename = "vm_ip_priv.txt"
 }

@@ -7,15 +7,15 @@ provider "azurerm" {
 }
 
 provider "google" {
-  credentials = file(".json")
-  project     = "demo2ansible"
-  region      = "europe-west3"
+  credentials = file("/root/gcp/fourthdemo-274718-829977cd6967.json")
+  project     = "fourthdemo-274718"
+  region      = "us-central1"
 }
 
 terraform {
   backend "gcs" {
-    credentials = "demo2ansible-4b5d43722b34.json"
-    bucket      = "terraform-cred-bucket"
+    credentials = file("/root/gcp/fourthdemo-274718-829977cd6967.json")
+    bucket      = "terraform-credentials-bucket"
     path        = "terraform.tfstate"
   }
 }
