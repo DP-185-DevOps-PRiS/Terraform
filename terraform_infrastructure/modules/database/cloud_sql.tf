@@ -28,3 +28,9 @@ resource "google_sql_user" "user" {
   instance = google_sql_database_instance.database_instance.name
   password = "postgres"
 }
+
+resource "google_sql_database" "databases" {
+  for_each = toset(var.names_of_databases)
+  name     = each.value
+  instance = google_sql_database_instance.database_instance.name
+}

@@ -24,6 +24,7 @@ resource "azurerm_linux_virtual_machine" "vm" {
   location              = var.group_location
   size                  = "Standart_D4s_v3"
   admin_username        = "ihor"
+  admin_password        = "Owl123456789"
   network_interface_ids = [azurerm_network_interface.net_inter.id]
 
   admin_ssh_key {
@@ -63,4 +64,9 @@ resource "azurerm_linux_virtual_machine" "vm" {
       "sudo chmod +x /usr/local/bin/docker-compose"
     ]
   }
+}
+
+resource "local_file" "vm_ip" {
+  content  = azurerm_linux_virtual_machine.vm.private_ip_address
+  filename = "vm_private_ip.txt"
 }
