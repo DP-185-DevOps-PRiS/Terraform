@@ -14,7 +14,7 @@ provider "google" {
 
 terraform {
   backend "gcs" {
-    credentials = file("/root/gcp/fourthdemo-274718-829977cd6967.json")
+    credentials = "demo2ansible-4b5d43722b34.json"
     bucket      = "terraform-credentials-bucket"
     path        = "terraform.tfstate"
   }
