@@ -1,6 +1,6 @@
 resource "azurerm_resource_group" "resource_group" {
   name     = "demo4terraform"
-  location = "West Europe"
+  location = "Central US"
 }
 
 resource "azurerm_virtual_network" "virt_net" {
