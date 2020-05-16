@@ -22,7 +22,7 @@ resource "azurerm_linux_virtual_machine" "vm" {
   name                  = "terraform-vm"
   resource_group_name   = var.group_name
   location              = var.group_location
-  size                  = "Standart_D4s_v3"
+  size                  = "Standard_D4s_v3"
   admin_username        = "teamcity"
   #admin_password        = "Owl123456789"
   network_interface_ids = [azurerm_network_interface.net_inter.id]
