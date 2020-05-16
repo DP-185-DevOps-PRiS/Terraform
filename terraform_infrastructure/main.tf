@@ -1,13 +1,13 @@
 provider "azurerm" {
-  subscription_id = "449bc4ca-78d3-448a-9c85-d171550b34d2"
-  client_id       = "474b899a-0918-4a06-83fc-2e5eaf5b3917"
-  client_secret   = ".X-KHKF6vP_jn62H/tqaea7bwToPWEfL"
-  tenant_id       = "6f07aacc-435e-403d-9519-3e1236fdb2da"
+  subscription_id = 
+  client_id       = 
+  client_secret   = 
+  tenant_id       = 
   features {}
 }
 
 provider "google" {
-  credentials = file("demo2ansible-4b5d43722b34.json")
+  credentials = file(".json")
   project     = "demo2ansible"
   region      = "europe-west3"
 }
