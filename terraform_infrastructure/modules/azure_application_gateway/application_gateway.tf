@@ -29,7 +29,7 @@ resource "azurerm_application_gateway" "app_gw" {
 
   sku {
     name     = "Standard_Small"
-    tier     = "Standart"
+    tier     = "Standard"
     capacity = 2
   }
 
@@ -59,9 +59,17 @@ resource "azurerm_application_gateway" "app_gw" {
   }
 
   backend_http_settings {
-    name                  = local.http_setting_name
+    name                  = "${local.http_setting_name}-80"
     cookie_based_affinity = "Disabled"
     port                  = 80
+    protocol              = "Http"
+    request_timeout       = 30
+  }
+
+  backend_http_settings {
+    name                  = "${local.http_setting_name}-8761"
+    cookie_based_affinity = "Disabled"
+    port                  = 8761
     protocol              = "Http"
     request_timeout       = 30
   }
@@ -74,18 +82,26 @@ resource "azurerm_application_gateway" "app_gw" {
   }
 
   http_listener {
-    name                           = "euruka"
+    name                           = "eureka"
     frontend_ip_configuration_name = local.frontend_ip_configuration_name
     frontend_port_name             = "${local.frontend_port_name}-8761"
     protocol                       = "Http"
   }
 
   request_routing_rule {
-    name                       = local.request_routing_rule_name
+    name                       = "${local.request_routing_rule_name}-80"
     rule_type                  = "Basic"
     http_listener_name         = local.listener_name
     backend_address_pool_name  = local.backend_address_pool_name
-    backend_http_settings_name = local.http_setting_name
+    backend_http_settings_name = "${local.http_setting_name}-80"
+  }
+
+  request_routing_rule {
+    name                       = "${local.request_routing_rule_name}-8761"
+    rule_type                  = "Basic"
+    http_listener_name         = "eureka"
+    backend_address_pool_name  = local.backend_address_pool_name
+    backend_http_settings_name = "${local.http_setting_name}-8761"
   }
 
 }

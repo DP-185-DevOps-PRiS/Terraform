@@ -1,12 +1,12 @@
 resource "google_sql_database_instance" "database_instance" {
   #  provider = google-beta
 
-  name             = "vpn-db-instance"
+  name             = "vpn-db-instance-3"
   region           = "us-central1"
   database_version = "POSTGRES_11"
 
   settings {
-    tier = "db-f1-micro"
+    tier = "db-n1-standard-1"
     ip_configuration {
       ipv4_enabled    = false
       private_network = var.network_selflink

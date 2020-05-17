@@ -19,11 +19,11 @@ resource "azurerm_network_interface" "net_inter" {
 }
 
 resource "azurerm_linux_virtual_machine" "vm" {
-  name                  = "terraform-vm"
-  resource_group_name   = var.group_name
-  location              = var.group_location
-  size                  = "Standart_D4s_v3"
-  admin_username        = "teamcity"
+  name                = "terraform-vm"
+  resource_group_name = var.group_name
+  location            = var.group_location
+  size                = "Standard_D4s_v3"
+  admin_username      = "teamcity"
   #admin_password        = "Owl123456789"
   network_interface_ids = [azurerm_network_interface.net_inter.id]
 
@@ -55,13 +55,13 @@ resource "azurerm_linux_virtual_machine" "vm" {
     inline = [
       "sudo apt update",
       "sudo apt -y upgrade ",
-      "sudo apt -y install apt-transport-https ca-certificates curl gnupg2 software-properties-common",
+      "sudo apt -y install apt-transport-https ca-certificates curl gnupg-agent software-properties-common",
       "curl -fsSL https://download.docker.com/linux/debian/gpg | sudo apt-key add -",
       "sudo add-apt-repository 'deb [arch=amd64] https://download.docker.com/linux/debian $(lsb_release -cs) stable'",
       "sudo apt update",
-      "sudo apt -y install docker-ce",
+      "sudo apt -y install docker-ce docker-ce-cli containerd.io",
       "sudo curl -L 'https://github.com/docker/compose/releases/download/1.25.5/docker-compose-$(uname -s)-$(uname -m)' -o /usr/local/bin/docker-compose",
-      "sudo chmod +x /usr/local/bin/docker-compose"
+      "sudo chmod +x /usr/local/bin/docker-compose",
     ]
   }
 }
