@@ -6,7 +6,7 @@ resource "google_sql_database_instance" "database_instance" {
   database_version = "POSTGRES_11"
 
   settings {
-    tier = "db-n1-standard-1"
+    tier = "db-custom-2-7680"
     ip_configuration {
       ipv4_enabled    = false
       private_network = var.network_selflink
