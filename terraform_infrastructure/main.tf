@@ -55,3 +55,12 @@ module "azure_application_gateway" {
   virtual_network_name = module.azure_vpc.virtual_network_name
   vm_private_ip        = module.azure_vm.vm_private_ip
 }
+
+module "autoscale-test" {
+  source = "./modules/autoscale-test"
+
+  group_name             = module.azure_vpc.group_name
+  group_location         = module.azure_vpc.group_location
+  subnet_id              = module.azure_vpc.subnet_id
+  application_gateway_id = module.azure_application_gateway.application_gateway_id
+}
