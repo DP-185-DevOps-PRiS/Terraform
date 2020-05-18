@@ -3,5 +3,5 @@ output "as_backends_add_pool" {
 }
 
 output "probe_id" {
-  value = azurerm_application_gateway.app_gw.probe.0.id
+  value = azurerm_application_gateway.app_gw.probe_id
 }
