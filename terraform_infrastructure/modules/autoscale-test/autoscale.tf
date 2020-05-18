@@ -49,7 +49,7 @@ resource "azurerm_virtual_machine_scale_set" "vm_scale_set" {
       name                                         = "as-ip-configuration"
       primary                                      = true
       subnet_id                                    = var.subnet_id
-      application_gateway_backend_address_pool_ids = var.as_backends_add_pool
+      application_gateway_backend_address_pool_ids = [var.as_backends_add_pool]
     }
   }
 }
