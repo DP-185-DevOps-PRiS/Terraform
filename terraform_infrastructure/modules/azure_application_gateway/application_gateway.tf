@@ -63,9 +63,12 @@ resource "azurerm_application_gateway" "app_gw" {
   }
 
   probe {
-    name     = "proge-scale-set"
-    protocol = "Http"
-    path     = "/"
+    name                = "proge-scale-set"
+    protocol            = "Http"
+    path                = "/"
+    internal            = 30
+    timeout             = 30
+    unhealthy_threshold = 20
   }
 
   backend_http_settings {
