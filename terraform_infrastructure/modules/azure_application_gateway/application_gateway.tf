@@ -58,6 +58,10 @@ resource "azurerm_application_gateway" "app_gw" {
     ip_addresses = [var.vm_private_ip]
   }
 
+  backend_address_pool {
+    name = "autoscale-backends-add-pool"
+  }
+
   backend_http_settings {
     name                  = "${local.http_setting_name}-80"
     cookie_based_affinity = "Disabled"
