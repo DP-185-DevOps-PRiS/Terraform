@@ -66,7 +66,7 @@ resource "azurerm_application_gateway" "app_gw" {
     name                = "proge-scale-set"
     protocol            = "Http"
     path                = "/"
-    internal            = 30
+    interval            = 30
     timeout             = 30
     unhealthy_threshold = 20
   }
