@@ -22,12 +22,12 @@ resource "azurerm_virtual_machine_scale_set" "vm_scale_set" {
     managed_disk_type = "StandardSSD_LRS"
   }
 
-  storage_profile_data_disk {
-    lun           = 0
-    caching       = "ReadWrite"
-    create_option = "Empty"
-    disk_size_gb  = 30
-  }
+  #storage_profile_data_disk {
+  #  lun           = 0
+  #  caching       = "ReadWrite"
+  #  create_option = "Empty"
+  #  disk_size_gb  = 30
+  #}
 
   os_profile {
     computer_name_prefix = "scale-vm"
