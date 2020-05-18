@@ -63,6 +63,7 @@ resource "azurerm_application_gateway" "app_gw" {
   }
 
   probe {
+    host                = "127.0.0.1"
     name                = "proge-scale-set"
     protocol            = "Http"
     path                = "/"
