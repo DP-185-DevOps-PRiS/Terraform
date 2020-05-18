@@ -3,7 +3,7 @@ resource "azurerm_virtual_machine_scale_set" "vm_scale_set" {
   location            = var.group_location
   resource_group_name = var.group_name
 
-  automatic_os_upgrade = true
+  automatic_os_upgrade = false
   upgrade_policy_mode  = "Rolling"
 
   #rolling_upgrade_policy {
