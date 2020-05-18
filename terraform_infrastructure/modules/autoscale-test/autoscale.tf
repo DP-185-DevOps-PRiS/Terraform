@@ -3,6 +3,8 @@ resource "azurerm_virtual_machine_scale_set" "vm_scale_set" {
   location            = var.group_location
   resource_group_name = var.group_name
 
+  upgrade_policy_mode = "Rolling"
+
   sku {
     name     = "Standard_D4s_v3"
     tier     = "Standard"
@@ -17,7 +19,14 @@ resource "azurerm_virtual_machine_scale_set" "vm_scale_set" {
   }
 
   storage_profile_os_disk {
-    name          = ""
+    name              = ""
+    caching           = "ReadWrite"
+    create_option     = "FromImage"
+    managed_disk_type = "Standard_LRS"
+  }
+
+  storage_profile_data_disk {
+    lun           = 0
     caching       = "ReadWrite"
     create_option = "Empty"
     disk_size_gb  = 20
@@ -36,10 +45,12 @@ resource "azurerm_virtual_machine_scale_set" "vm_scale_set" {
   }
 
   network_profile {
-    name = "autoscale-nw-profile"
+    name    = "autoscale-nw-profile"
+    primary = true
 
     ip_configuration {
       name                                         = "as-ip-configuration"
+      primary                                      = true
       subnet_id                                    = var.subnet_id
       application_gateway_backend_address_pool_ids = var.as_backends_add_pool
     }
