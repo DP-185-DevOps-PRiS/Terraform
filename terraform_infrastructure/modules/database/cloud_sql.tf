@@ -1,7 +1,7 @@
 resource "google_sql_database_instance" "database_instance" {
   #  provider = google-beta
 
-  name             = "vpn-db-instance-3"
+  name             = "vpn-db-instance-4"
   region           = "us-central1"
   database_version = "POSTGRES_11"
 
