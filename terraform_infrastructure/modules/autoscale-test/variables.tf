@@ -7,3 +7,5 @@ variable "group_location" {}
 variable "subnet_id" {}
 
 variable "as_backends_add_pool" {}
+
+variable "probe_id" {}

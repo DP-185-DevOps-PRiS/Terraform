@@ -3,7 +3,17 @@ resource "azurerm_virtual_machine_scale_set" "vm_scale_set" {
   location            = var.group_location
   resource_group_name = var.group_name
 
-  upgrade_policy_mode = "Rolling"
+  automatic_os_upgrade = true
+  upgrade_policy_mode  = "Rolling"
+
+  rolling_upgrade_policy {
+    max_batch_instance_percent              = 20
+    max_unhealthy_instance_percent          = 20
+    max_unhealthy_upgraded_instance_percent = 5
+    pause_time_between_batches              = "PT0S"
+  }
+
+  health_probe_id = var.probe_id
 
   sku {
     name     = "Standard_D2s_v3"
