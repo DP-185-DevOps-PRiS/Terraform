@@ -1,4 +1,4 @@
-variable "application_gateway_id" {}
+#variable "application_gateway_id" {}
 
 variable "group_name" {}
 
