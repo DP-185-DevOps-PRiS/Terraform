@@ -6,7 +6,7 @@ resource "azurerm_virtual_machine_scale_set" "vm_scale_set" {
   upgrade_policy_mode = "Rolling"
 
   sku {
-    name     = "Standard_D4s_v3"
+    name     = "Standard_D2s_v3"
     tier     = "Standard"
     capacity = 3
   }

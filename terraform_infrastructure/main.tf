@@ -39,13 +39,13 @@ module "database" {
   source = "./modules/database"
 }
 
-module "azure_vm" {
-  source = "./modules/azure_vm"
-
-  group_name     = module.azure_vpc.group_name
-  group_location = module.azure_vpc.group_location
-  subnet_id      = module.azure_vpc.subnet_id
-}
+#module "azure_vm" {
+#  source = "./modules/azure_vm"
+#
+#  group_name     = module.azure_vpc.group_name
+#  group_location = module.azure_vpc.group_location
+#  subnet_id      = module.azure_vpc.subnet_id
+#}
 
 module "azure_application_gateway" {
   source = "./modules/azure_application_gateway"
@@ -53,7 +53,7 @@ module "azure_application_gateway" {
   group_name           = module.azure_vpc.group_name
   group_location       = module.azure_vpc.group_location
   virtual_network_name = module.azure_vpc.virtual_network_name
-  vm_private_ip        = module.azure_vm.vm_private_ip
+  #  vm_private_ip        = module.azure_vm.vm_private_ip
 }
 
 module "autoscale-test" {
