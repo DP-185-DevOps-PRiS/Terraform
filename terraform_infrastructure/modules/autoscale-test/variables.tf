@@ -8,4 +8,4 @@ variable "subnet_id" {}
 
 variable "as_backends_add_pool" {}
 
-variable "probe_id" {}
+#variable "probe_id" {}
