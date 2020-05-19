@@ -48,7 +48,7 @@ resource "azurerm_virtual_machine_scale_set" "vm_scale_set" {
   resource_group_name = var.group_name
 
   automatic_os_upgrade = false
-  upgrade_policy_mode  = "Rolling"
+  upgrade_policy_mode  = "Automatic"
 
   #rolling_upgrade_policy {
   #  max_batch_instance_percent              = 20
