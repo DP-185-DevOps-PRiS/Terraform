@@ -1,46 +1,46 @@
-resource "azurerm_public_ip" "lb_public_ip" {
-  name                = "lb-public-ip"
-  resource_group_name = var.group_name
-  location            = var.group_location
-  allocation_method   = "Static"
-}
+#resource "azurerm_public_ip" "lb_public_ip" {
+#  name                = "lb-public-ip"
+#  resource_group_name = var.group_name
+#  location            = var.group_location
+#  allocation_method   = "Static"
+#}
 
-resource "azurerm_lb" "autoscale_lb" {
-  name                = "autoscale-lb"
-  location            = var.group_location
-  resource_group_name = var.group_name
+#resource "azurerm_lb" "autoscale_lb" {
+#  name                = "autoscale-lb"
+#  location            = var.group_location
+#  resource_group_name = var.group_name
 
-  frontend_ip_configuration {
-    name                 = "PublicIPAddress"
-    public_ip_address_id = azurerm_public_ip.lb_public_ip.id
-  }
-}
+#  frontend_ip_configuration {
+#    name                 = "PublicIPAddress"
+#    public_ip_address_id = azurerm_public_ip.lb_public_ip.id
+#  }
+#}
 
-resource "azurerm_lb_backend_address_pool" "lb_be_add_pool" {
-  resource_group_name = var.group_name
-  loadbalancer_id     = azurerm_lb.autoscale_lb.id
-  name                = "LBBackEndAddressPool"
-}
+#resource "azurerm_lb_backend_address_pool" "lb_be_add_pool" {
+#  resource_group_name = var.group_name
+#  loadbalancer_id     = azurerm_lb.autoscale_lb.id
+#  name                = "LBBackEndAddressPool"
+#}
 
-resource "azurerm_lb_nat_pool" "lb_nat_pool" {
-  resource_group_name            = var.group_name
-  name                           = "main-traffic"
-  loadbalancer_id                = azurerm_lb.autoscale_lb.id
-  protocol                       = "Tcp"
-  frontend_port_start            = 80
-  frontend_port_end              = 90
-  backend_port                   = 80
-  frontend_ip_configuration_name = "PublicIPAddress"
-}
+#resource "azurerm_lb_nat_pool" "lb_nat_pool" {
+#  resource_group_name            = var.group_name
+#  name                           = "main-traffic"
+#  loadbalancer_id                = azurerm_lb.autoscale_lb.id
+#  protocol                       = "Tcp"
+#  frontend_port_start            = 80
+#  frontend_port_end              = 90
+#  backend_port                   = 80
+#  frontend_ip_configuration_name = "PublicIPAddress"
+#}
 
-resource "azurerm_lb_probe" "lb_probe" {
-  resource_group_name = var.group_name
-  loadbalancer_id     = azurerm_lb.autoscale_lb.id
-  name                = "lb-http-probe"
-  protocol            = "Http"
-  request_path        = "/"
-  port                = 80
-}
+#resource "azurerm_lb_probe" "lb_probe" {
+#  resource_group_name = var.group_name
+#  loadbalancer_id     = azurerm_lb.autoscale_lb.id
+#  name                = "lb-http-probe"
+#  protocol            = "Http"
+#  request_path        = "/"
+#  port                = 80
+#}
 
 resource "azurerm_virtual_machine_scale_set" "vm_scale_set" {
   name                = "test-scale-set"
@@ -101,11 +101,11 @@ resource "azurerm_virtual_machine_scale_set" "vm_scale_set" {
     primary = true
 
     ip_configuration {
-      name                                   = "as-ip-configuration"
-      primary                                = true
-      subnet_id                              = var.subnet_id
-      load_balancer_backend_address_pool_ids = [azurerm_lb_backend_address_pool.lb_be_add_pool.id]
-      load_balancer_inbound_nat_rules_ids    = [azurerm_lb_nat_pool.lb_nat_pool.id]
+      name                                         = "as-ip-configuration"
+      primary                                      = true
+      subnet_id                                    = var.subnet_id
+      application_gateway_backend_address_pool_ids = [var.as_backends_add_pool]
+      #load_balancer_inbound_nat_rules_ids    = [azurerm_lb_nat_pool.lb_nat_pool.id]
     }
   }
 }

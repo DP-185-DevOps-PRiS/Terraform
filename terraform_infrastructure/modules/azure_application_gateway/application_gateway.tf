@@ -106,7 +106,7 @@ resource "azurerm_application_gateway" "app_gw" {
     name                       = "${local.request_routing_rule_name}-80"
     rule_type                  = "Basic"
     http_listener_name         = local.listener_name
-    backend_address_pool_name  = local.backend_address_pool_name
+    backend_address_pool_name  = "autoscale-backends-add-pool"
     backend_http_settings_name = "${local.http_setting_name}-80"
   }
 
@@ -114,7 +114,7 @@ resource "azurerm_application_gateway" "app_gw" {
     name                       = "${local.request_routing_rule_name}-8761"
     rule_type                  = "Basic"
     http_listener_name         = "eureka"
-    backend_address_pool_name  = local.backend_address_pool_name
+    backend_address_pool_name  = "autoscale-backends-add-pool"
     backend_http_settings_name = "${local.http_setting_name}-8761"
   }
 
