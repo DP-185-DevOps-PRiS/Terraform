@@ -86,7 +86,7 @@ resource "azurerm_virtual_machine_scale_set" "vm_scale_set" {
   os_profile {
     computer_name_prefix = "scale-vm"
     admin_username       = "teamcity"
-    admin_password       = "Owl123456789"
+    #admin_password       = "Owl123456789"
   }
 
   os_profile_linux_config {
