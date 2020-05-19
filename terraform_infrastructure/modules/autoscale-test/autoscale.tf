@@ -26,7 +26,7 @@ resource "azurerm_lb_nat_pool" "lb_nat_pool" {
   resource_group_name            = var.group_name
   name                           = "main-traffic"
   loadbalancer_id                = azurerm_lb.autoscale_lb.id
-  protocol                       = "Http"
+  protocol                       = "Tcp"
   frontend_port_start            = 80
   frontend_port_end              = 80
   backend_port                   = 80
