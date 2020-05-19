@@ -62,7 +62,7 @@ resource "azurerm_virtual_machine_scale_set" "vm_scale_set" {
   sku {
     name     = "Standard_D2s_v3"
     tier     = "Standard"
-    capacity = 3
+    capacity = 2
   }
 
   storage_profile_image_reference {
@@ -122,7 +122,7 @@ resource "azurerm_monitor_autoscale_setting" "autoscaling" {
     capacity {
       default = 1
       minimum = 1
-      maximum = 3
+      maximum = 2
     }
 
     rule {
