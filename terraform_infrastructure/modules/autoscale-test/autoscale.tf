@@ -28,7 +28,7 @@ resource "azurerm_lb_nat_pool" "lb_nat_pool" {
   loadbalancer_id                = azurerm_lb.autoscale_lb.id
   protocol                       = "Tcp"
   frontend_port_start            = 80
-  frontend_port_end              = 80
+  frontend_port_end              = 90
   backend_port                   = 80
   frontend_ip_configuration_name = "PublicIPAddress"
 }
