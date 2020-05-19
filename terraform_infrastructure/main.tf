@@ -59,9 +59,9 @@ module "azure_application_gateway" {
 module "autoscale-test" {
   source = "./modules/autoscale-test"
 
-  group_name           = module.azure_vpc.group_name
-  group_location       = module.azure_vpc.group_location
-  subnet_id            = module.azure_vpc.subnet_id
-  as_backends_add_pool = module.azure_application_gateway.as_backends_add_pool
+  group_name     = module.azure_vpc.group_name
+  group_location = module.azure_vpc.group_location
+  subnet_id      = module.azure_vpc.subnet_id
+  #as_backends_add_pool = module.azure_application_gateway.as_backends_add_pool
   #probe_id             = module.azure_application_gateway.probe_id
 }
