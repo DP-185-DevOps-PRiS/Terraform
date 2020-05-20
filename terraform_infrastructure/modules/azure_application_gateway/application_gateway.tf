@@ -62,16 +62,6 @@ resource "azurerm_application_gateway" "app_gw" {
     name = "autoscale-backends-add-pool"
   }
 
-  probe {
-    host                = "127.0.0.1"
-    name                = "proge-scale-set"
-    protocol            = "Http"
-    path                = "/"
-    interval            = 30
-    timeout             = 30
-    unhealthy_threshold = 20
-  }
-
   backend_http_settings {
     name                  = "${local.http_setting_name}-80"
     cookie_based_affinity = "Disabled"
