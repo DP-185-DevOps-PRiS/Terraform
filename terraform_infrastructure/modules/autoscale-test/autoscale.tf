@@ -66,7 +66,7 @@ resource "azurerm_virtual_machine_scale_set" "vm_scale_set" {
   }
 
   storage_profile_image_reference {
-    id = "/subscriptions/ef314f22-873a-4fce-8baa-74af90e23731/resourceGroups/Containers/providers/Microsoft.Compute/images/kickscooter-image"
+    id = "/subscriptions/ef314f22-873a-4fce-8baa-74af90e23731/resourceGroups/Containers/providers/Microsoft.Compute/images/kickscooter-golden-copy"
   }
 
   storage_profile_os_disk {
