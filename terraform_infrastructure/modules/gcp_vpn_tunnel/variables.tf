@@ -13,7 +13,7 @@ variable "az_traffic_selector" {
 }
 
 variable "gcp_traffic_selector" {
-  default = ["10.128.0.0/20", "172.22.208.0/24"]
+  default = ["10.128.0.0/20", "10.142.0.0/20", "172.22.208.0/24"]
 }
 
 variable "dest_range" {
