@@ -1,7 +1,7 @@
 resource "google_sql_database_instance" "database_instance" {
   #  provider = google-beta
 
-  name             = "vpn-db-instance-4"
+  name             = "vpn-db-instance-5"
   region           = "us-central1"
   database_version = "POSTGRES_11"
 
@@ -13,10 +13,6 @@ resource "google_sql_database_instance" "database_instance" {
     }
   }
 }
-
-#output "ip" {
-#  value = google_sql_database_instance.database_instance.private_ip_address
-#}
 
 resource "local_file" "db_ip" {
   content  = google_sql_database_instance.database_instance.private_ip_address
